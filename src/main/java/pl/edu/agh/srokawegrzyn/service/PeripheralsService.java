@@ -2,6 +2,7 @@ package pl.edu.agh.srokawegrzyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.edu.agh.srokawegrzyn.ConnectedPeripheralsContainer;
 import pl.edu.agh.srokawegrzyn.dao.PeripheralsDAO;
 import pl.edu.agh.srokawegrzyn.dto.ConnectedPeripheralDTO;
@@ -14,6 +15,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Service
+@Transactional
 public class PeripheralsService {
     @Autowired
     PeripheralsDAO peripheralsDAO;
