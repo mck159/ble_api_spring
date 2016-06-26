@@ -24,9 +24,8 @@ public class AppController {
     PeripheralsService peripheralsService;
 
     @RequestMapping(value = "connected", method = RequestMethod.POST)
-    public String postConnectedPeripheralData(@RequestBody PeripheralDTO peripheralDTO) {
+    public void postConnectedPeripheralData(@RequestBody PeripheralDTO peripheralDTO) {
         peripheralsService.addConnected(peripheralDTO);
-        return "DUPA";
     }
 
     @RequestMapping(value = "disconnected", method = RequestMethod.POST)
