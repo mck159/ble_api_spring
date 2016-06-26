@@ -1,26 +1,33 @@
 package pl.edu.agh.srokawegrzyn.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import javax.persistence.*;
 import java.util.Date;
 
-@Table(name = "peripherals_history")
+@Table(name = "peripheralshistory")
 @Entity
 public class Peripheral {
     @Id
-    int id;
+    @Basic(optional = false)
+//    @SequenceGenerator(name="peripheral_pk_sequence_gen",sequenceName="peripherals_history_id_seq", allocationSize=1)
+//    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="peripheral_pk_sequence_gen")
+    @Column(name="id", columnDefinition = "serial")
+        @Generated(GenerationTime.INSERT)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    Long id;
     String peripheralManufacturer;
     String peripheralModel;
     String peripheralIMEI;
     Date connectTime;
     Date disconnectTime;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -85,7 +92,7 @@ public class Peripheral {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (peripheralManufacturer != null ? peripheralManufacturer.hashCode() : 0);
         result = 31 * result + (peripheralModel != null ? peripheralModel.hashCode() : 0);
         result = 31 * result + (peripheralIMEI != null ? peripheralIMEI.hashCode() : 0);
